@@ -65,10 +65,10 @@ namespace Reminders
             }            
             if (arg == "Startup")
             {
-                if (Properties.Settings.Default.startup == true)
+                if (Properties.Settings.Default.startup)
                 {
                     GetEventsAndRemindUser();
-                    if (Properties.Settings.Default.keepAppOpen == false)
+                    if (!Properties.Settings.Default.keepAppOpen)
                         Application.Exit();
                 }                    
             }            
@@ -118,27 +118,21 @@ namespace Reminders
                     try
                     {
                         string dGVdate = DateTime.Parse(dGVMain[3, i].Value.ToString()).ToShortDateString();
-                        if (dGVdate == today.ToShortDateString())
-                        {
-                            // the user has already been reminded today
-                            isTodayOrNull = false;
-                        }
-                        else
-                        {
-                            // the user had been reminded some time in the past, but not today
-                            isTodayOrNull = true;
-                        }
+
+                        // the user has already been reminded today
+                        if (dGVdate == today.ToShortDateString()) isTodayOrNull = false;
+
+                        // the user had been reminded some time in the past, but not today
+                        else isTodayOrNull = true;
                     }
                     // else, it's not, and it's null
-                    catch (Exception)
-                    {
-                        isTodayOrNull = true;
-                    }
+                    catch (Exception) { isTodayOrNull = true; }
+
                     // User setting alert every time is true, then:
-                    if (Properties.Settings.Default.alertFrequency == "Every time")
-                        isTodayOrNull = true;
+                    if (Properties.Settings.Default.alertFrequency == "Every time") isTodayOrNull = true;
+
                     // if it's not today or it's null, then execute
-                    if (isTodayOrNull == true)
+                    if (isTodayOrNull)
                     {
                         pickedDate = DateTime.Parse(dGVMain.Rows[i].Cells[1].Value.ToString());
                         diffDaysTS = pickedDate - today;
@@ -175,7 +169,7 @@ namespace Reminders
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            if (CheckTxtPresence() == true)
+            if (ValidInputs())
             {
                 SQLiteConnection conn = new SQLiteConnection(connStr);
                 try
@@ -205,7 +199,7 @@ namespace Reminders
             conn.Close();
         }
         
-        private bool CheckTxtPresence()
+        private bool ValidInputs()
         {
             bool isTxtDaysValid = false;
             try
@@ -215,12 +209,8 @@ namespace Reminders
                     isTxtDaysValid = true;
             }
             catch { }
-            if (string.IsNullOrWhiteSpace(txtDesc.Text) || isTxtDaysValid == false)
-            {
-                return false;
-            }
-            else
-                return true;
+            if (!InputPresent(true, false) || isTxtDaysValid == false) return false;
+            else return true;
         }
 
         private void BtnDel_Click(object sender, EventArgs e)
@@ -246,48 +236,31 @@ namespace Reminders
 
         private void DGVMain_SelectionChanged(object sender, EventArgs e)
         {
+            if (!editMode) btnDel.Enabled = true;
             if (dGVMain.SelectedRows.Count > 0 && dGVMain.SelectedRows.Count < 2)
-            {
-                btnDel.Enabled = true;
                 btnEdit.Enabled = true;
-            }
-            else if (dGVMain.SelectedRows.Count > 1)
-            {
-                btnDel.Enabled = true;
-                btnEdit.Enabled = false;
-            }
+            else if (dGVMain.SelectedRows.Count > 1) btnEdit.Enabled = false;
         }
 
         private void TxtDesc_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtDesc.Text) || String.IsNullOrWhiteSpace(txtDesc.Text))
+            bool descValid = InputPresent(true, false);
+            btnAdd.Enabled = descValid;
+            btnCfrmEdits.Enabled = descValid;
+            lblWarnDesc.Visible = !descValid;
+            // btnEdit.Enabled = true; // ?
+            // lblWarnDesc.Visible = false;
+            if (editMode == true)
             {
                 btnAdd.Enabled = false;
-                btnCfrmEdits.Enabled = false;
-                lblWarnDesc.Visible = true;
+                btnCnclEdits.Enabled = true;
+                btnCfrmEdits.Enabled = checkInputChanged(true, true, true);
             }
             else
             {
-                btnEdit.Enabled = true; // ?
-                lblWarnDesc.Visible = false;
-                if (editMode == true)
-                {
-                    btnAdd.Enabled = false;
-                    btnCnclEdits.Enabled = true;
-                    btnCfrmEdits.Enabled = true;
-
-                    // check if the new value is the same as the original
-                    btnCfrmEdits.Enabled = checkChanged(true, true, true);
-                }
-                else
-                {
-                    if (!String.IsNullOrEmpty(txtDays.Text))
-                    {
-                        btnAdd.Enabled = true;
-                        btnCnclEdits.Enabled = false;
-                        btnCfrmEdits.Enabled = false;
-                    }
-                }
+                btnAdd.Enabled = InputPresent(true, true);
+                btnCnclEdits.Enabled = false;
+                btnCfrmEdits.Enabled = false;
             }
         }
 
@@ -307,6 +280,7 @@ namespace Reminders
 
             // Days = Days Before Reminding
             btnAdd.Enabled = false;
+            btnDel.Enabled = false;
             btnCnclEdits.Enabled = true;
             btnCfrmEdits.Enabled = false;
             editMode = true;
@@ -316,8 +290,7 @@ namespace Reminders
         {
             if (!String.IsNullOrWhiteSpace(txtDays.Text))
             {
-                if (!String.IsNullOrEmpty(txtDesc.Text) || !String.IsNullOrWhiteSpace(txtDesc.Text))
-                    btnAdd.Enabled = true;
+                btnAdd.Enabled = InputPresent(true, false);
                 int id = Int32.Parse(dGVMain.SelectedRows[0].Cells[0].Value.ToString());
                 string desc = txtDesc.Text;
                 string days = txtDays.Text;
@@ -334,6 +307,7 @@ namespace Reminders
                 FillGridData();
                 btnCfrmEdits.Enabled = false;
                 btnCnclEdits.Enabled = false;
+                btnDel.Enabled = true;
                 editMode = false;
             }
             else
@@ -343,30 +317,39 @@ namespace Reminders
             }
         }
 
+        /**
+         * Cancel the current edits and turns editMode off when the Cancel Edits button is clicked.
+         * */
         private void BtnCnclEdits_Click(object sender, EventArgs e)
         {
+            // disable editMode and re-enable btnAdd and btnDel if necessary
             editMode = false;
-            if (!String.IsNullOrEmpty(txtDesc.Text) || !String.IsNullOrWhiteSpace(txtDesc.Text))
-                btnAdd.Enabled = true;
-            DateTime itemDate = DateTime.Parse(dGVMain.SelectedRows[0].Cells[1].Value.ToString());
-            string itemDesc = dGVMain.SelectedRows[0].Cells[2].Value.ToString();
-            string itemDays = dGVMain.SelectedRows[0].Cells[4].Value.ToString();
-            txtDesc.Text = itemDesc;
-            dateTimePicker.Value = itemDate;
-            txtDays.Text = itemDays;
+            btnAdd.Enabled = InputPresent(true, true);
+            btnDel.Enabled = true;
+
+            // no longer in edit mode
             btnCnclEdits.Enabled = false;
             btnCfrmEdits.Enabled = false;
         }
 
+        /**
+         * Opens up the settings dialog/window when the settings button is clicked.
+         * */
         private void SettingsStripMenuItem_Click(object sender, EventArgs e){
             Form fS = new Form_Settings();
             fS.ShowDialog();
         }
 
+        /**
+         * Refreshes the data and the window formats when the Refresh buitton is clicked.
+         * */
         private void BtnRefresh_Click(object sender, EventArgs e){
             FillGridData();
         }
 
+        /**
+         * Formats the window according the the user's preferences.
+         * */
         private void FormatAndResize(){
             float dGVFontSize = Properties.Settings.Default.fontSizeRemList;
             int dateWidth = Properties.Settings.Default.dateWidth;
@@ -383,12 +366,16 @@ namespace Reminders
             dGVMain.Columns[3].Visible = false; //RemindDate
             if(shown)
             {
-                dGVMain.Columns[1].Width = dateWidth; //Date
-                dGVMain.Columns[2].Width = descWidth; //Extend the width of the description column
-                dGVMain.Columns[4].Width = daysWidth;
+                dGVMain.Columns[1].Width = dateWidth; // Extend the width of the date column
+                dGVMain.Columns[2].Width = descWidth; // "" the description column
+                dGVMain.Columns[4].Width = daysWidth; // "" the days before reminding column
             }
         }
 
+        /**
+         * The method for saving the user's preferences of column widths once the user drags
+         * and changes their widths.
+         * */
         private void dGVMain_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             int dateWidth = Properties.Settings.Default.dateWidth;
@@ -410,39 +397,58 @@ namespace Reminders
                 Properties.Settings.Default.Save();
         }
 
+        /**
+         * When the window is shown. Initializes a variable called shown to track some state
+         * changes, as well as format the window to correspond to user settings.
+         * */
         private void RemindersMain_Shown(object sender, EventArgs e)
         {
             shown = true;
             FormatAndResize();
         }
 
+        /**
+         * The event for when the text of the Days Before Reminding text field is changed.
+         * This changes the Confirm Edits and Add buttons enabled states.
+         * */
         private void txtDays_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txtDays.Text) && !String.IsNullOrEmpty(txtDesc.Text))
-            {
-                btnAdd.Enabled = true;
-                if(editMode == true)
-                {
-                    // check if the new value is the same as the original
-                    btnCfrmEdits.Enabled = checkChanged(true, true, true);
-                }
-            }
-            else btnAdd.Enabled = false;
+            if (editMode == true)
+                btnCfrmEdits.Enabled = checkInputChanged(true, true, true) && InputPresent(true, true);
+            else btnAdd.Enabled = InputPresent(true, true);
         }
 
+        /**
+         * <summary>Check if the descriptions and the days input fields are not empty.</summary>
+         * <param name="checkDays">Whether to check the descriptions input field.</param>
+         * <param name="checkDesc">Whether to check the days input field.</param>
+         * <returns>true if the desired input fields to check are valid, false otherwise.</returns>
+         * */
+        private bool InputPresent(bool checkDesc, bool checkDays)
+        {
+            bool descValid, daysValid;
+            descValid = daysValid = true;
+
+            // only make false if want to check and any of the inputs is empty
+            if (checkDesc && String.IsNullOrEmpty(txtDesc.Text)) descValid = false;
+            if (checkDays && String.IsNullOrEmpty(txtDays.Text)) daysValid = false;
+
+            return descValid && daysValid;
+        }
+
+        /**
+         * The event for when the date value of the date picker is changed. This also changes
+         * the Confirm Edits button enabled state.
+         * */
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            if(editMode == true)
-            {
-                // check if the new value is the same as the original
-                btnCfrmEdits.Enabled = checkChanged(true, true, true);
-            }
+            if(editMode) btnCfrmEdits.Enabled = checkInputChanged(true, true, true);
         }
 
         /** 
          * Checking for whether any of the properties has changed
          * */
-        private bool checkChanged(bool checkDate, bool checkDesc, bool checkDays)
+        private bool checkInputChanged(bool checkDate, bool checkDesc, bool checkDays)
         {
             bool dateChanged, descChanged, daysChanged;
             dateChanged = descChanged = daysChanged = false;

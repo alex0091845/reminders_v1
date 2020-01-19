@@ -121,7 +121,7 @@
             // 
             this.btnCfrmEdits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCfrmEdits.Enabled = false;
-            this.btnCfrmEdits.Location = new System.Drawing.Point(258, 314);
+            this.btnCfrmEdits.Location = new System.Drawing.Point(366, 314);
             this.btnCfrmEdits.Name = "btnCfrmEdits";
             this.btnCfrmEdits.Size = new System.Drawing.Size(102, 23);
             this.btnCfrmEdits.TabIndex = 5;
@@ -133,7 +133,7 @@
             // 
             this.btnCnclEdits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCnclEdits.Enabled = false;
-            this.btnCnclEdits.Location = new System.Drawing.Point(366, 314);
+            this.btnCnclEdits.Location = new System.Drawing.Point(258, 314);
             this.btnCnclEdits.Name = "btnCnclEdits";
             this.btnCnclEdits.Size = new System.Drawing.Size(102, 23);
             this.btnCnclEdits.TabIndex = 5;
