@@ -6,6 +6,7 @@ This application was written using Visual Studio and the .NET library in C#, wit
 * Reminds user upon boot/login (optional)
 * Decide for how many days to remind user of a specific reminder
 * Custom date format, font size, and remind frequency
+* Automatically saves column widths as user drags/adjusts them
 
 ### Prerequisites/Dependencies ###
 * .NET 4.6.1 framework -- use setup.exe to both download it and install Reminders
