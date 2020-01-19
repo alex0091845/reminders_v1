@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Reminders_V1",
+      "appliesTo": "Reminders_V1/",
+      "type": "launch"
+    }
+  ]
+}

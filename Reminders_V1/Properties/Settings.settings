@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Reminders.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="formatString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0:yyyy/M/d}</Value>
+    </Setting>
+    <Setting Name="startup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="alertFrequency" Type="System.String" Scope="User">
+      <Value Profile="(Default)">First time of the day</Value>
+    </Setting>
+    <Setting Name="keepAppOpen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="fontSizeRemList" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">10.5</Value>
+    </Setting>
+    <Setting Name="dateWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="descWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">185</Value>
+    </Setting>
+    <Setting Name="daysWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">165</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
