@@ -570,7 +570,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Reminders"
         "ProductCode" = "8:{095B49D6-40D1-43B9-AF0C-1A8C990ADAD4}"
-        "PackageCode" = "8:{07F5CB08-51AE-4FF6-846C-CCF202BFB166}"
+        "PackageCode" = "8:{EC83853F-F131-476C-91B3-CFE56E671B43}"
         "UpgradeCode" = "8:{9F76F48E-880F-4D87-BCF2-E4BADBC0ABCC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -701,7 +701,7 @@
             "Target" = "8:_95F0B20A24EB4D2A8364AD4E3BBFFA1B"
             "Folder" = "8:_30928EA7A9EA45C6BCB6D5E45CDFC895"
             "WorkingFolder" = "8:_F02BAE28079441A08EBCA09F95403C1E"
-            "Icon" = "8:"
+            "Icon" = "8:_00548AA3DC9442A683AF37CB79633D0B"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_713705B2D92F456991D23F8BA18D080F"
@@ -715,7 +715,7 @@
             "Target" = "8:_95F0B20A24EB4D2A8364AD4E3BBFFA1B"
             "Folder" = "8:_613B62D19375469DBAFEB294B00503A4"
             "WorkingFolder" = "8:_F02BAE28079441A08EBCA09F95403C1E"
-            "Icon" = "8:"
+            "Icon" = "8:_00548AA3DC9442A683AF37CB79633D0B"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C45D446B384A4A0E819207AB6C2552AA"

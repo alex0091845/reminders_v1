@@ -33,12 +33,10 @@ C:\Me\source\repos\Reminders_V1\Reminders_V1\bin\Release\System.Data.SQLite.Linq
 C:\Me\source\repos\Reminders_V1\Reminders_V1\bin\Release\EntityFramework.xml
 C:\Me\source\repos\Reminders_V1\Reminders_V1\bin\Release\EntityFramework.SqlServer.xml
 C:\Me\source\repos\Reminders_V1\Reminders_V1\bin\Release\System.Data.SQLite.xml
-C:\Me\source\repos\Reminders_V1\Reminders_V1\bin\Release\System.Data.SQLite.dll.config
-C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.csprojAssemblyReference.cache
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.RemindersMain.resources
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.Form_Settings.resources
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.Properties.Resources.resources
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.csproj.GenerateResource.cache
-C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.csproj.CopyComplete
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.exe
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.pdb
+C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.csprojResolveAssemblyReference.cache

@@ -185,6 +185,7 @@
             this.dGVMain.Size = new System.Drawing.Size(453, 173);
             this.dGVMain.TabIndex = 7;
             this.dGVMain.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dGVMain_ColumnWidthChanged);
+            this.dGVMain.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dGVMain_RowsRemoved);
             this.dGVMain.SelectionChanged += new System.EventHandler(this.DGVMain_SelectionChanged);
             // 
             // lblWarnDesc

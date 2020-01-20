@@ -82,8 +82,8 @@ namespace Reminders
                 SQLiteConnection.CreateFile(dataPath);
                 SQLiteConnection conn = new SQLiteConnection(connStr);
                 conn.Open();
-                string createCmdStr = "CREATE TABLE Reminders (ReminderId INTEGER, Date TEXT, Description TEXT, " +
-                    "RemindDate TEXT, DaysBeforeToRemind INTEGER)";
+                string createCmdStr = "CREATE TABLE Reminders (ReminderId INTEGER PRIMARY KEY NOT NULL" +
+                    ", Date TEXT, Description TEXT, RemindDate TEXT, DaysBeforeToRemind INTEGER)";
                 SQLiteCommand createCmd = new SQLiteCommand(createCmdStr, conn);
                 createCmd.ExecuteNonQuery();
                 conn.Close();
@@ -248,8 +248,6 @@ namespace Reminders
             btnAdd.Enabled = descValid;
             btnCfrmEdits.Enabled = descValid;
             lblWarnDesc.Visible = !descValid;
-            // btnEdit.Enabled = true; // ?
-            // lblWarnDesc.Visible = false;
             if (editMode == true)
             {
                 btnAdd.Enabled = false;
@@ -458,6 +456,15 @@ namespace Reminders
             if (checkDays && !txtDays.Text.Equals(origDays)) daysChanged = true;
 
             return dateChanged || descChanged || daysChanged;
+        }
+
+        private void dGVMain_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            if(dGVMain.RowCount == 0)
+            {
+                btnDel.Enabled = false;
+                btnEdit.Enabled = false;
+            }
         }
     }
 }
