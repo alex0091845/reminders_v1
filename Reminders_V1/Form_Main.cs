@@ -40,8 +40,9 @@ namespace Reminders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string dataPath = appDataPath + "\\RemindersData\\RemindersData.db";
-            InitializeSaveData(dataPath);
+            string folderPath = appDataPath + "\\RemindersData";
+            string dataPath = folderPath + "\\RemindersData.db";
+            InitializeSaveData(folderPath, dataPath);
             dGVMain.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", Properties.Settings.Default.fontSizeRemList);
             dGVMain.RowsDefaultCellStyle.Font = new Font("Microsoft Sans Serif", Properties.Settings.Default.fontSizeRemList);
 
@@ -74,9 +75,11 @@ namespace Reminders
             }            
         }
 
-        private void InitializeSaveData(string dataPath)
+        private void InitializeSaveData(string folderPath, string dataPath)
         {
-            // create if it's not there already
+            Directory.CreateDirectory(folderPath);
+
+            // create file if it's not there already
             if(!File.Exists(dataPath))
             {
                 SQLiteConnection.CreateFile(dataPath);

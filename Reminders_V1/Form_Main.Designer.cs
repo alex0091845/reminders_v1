@@ -48,8 +48,10 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dGVMain)).BeginInit();
             this.menuStrip.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblDesc
@@ -84,10 +86,12 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Enabled = false;
             this.btnAdd.Location = new System.Drawing.Point(340, 29);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(128, 23);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -95,11 +99,13 @@
             // 
             // btnDel
             // 
-            this.btnDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDel.AutoSize = true;
+            this.btnDel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDel.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDel.Enabled = false;
-            this.btnDel.Location = new System.Drawing.Point(96, 314);
+            this.btnDel.Location = new System.Drawing.Point(106, 3);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(75, 23);
+            this.btnDel.Size = new System.Drawing.Size(86, 23);
             this.btnDel.TabIndex = 5;
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
@@ -107,11 +113,13 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEdit.AutoSize = true;
+            this.btnEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(177, 314);
+            this.btnEdit.Location = new System.Drawing.Point(198, 3);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.Size = new System.Drawing.Size(86, 23);
             this.btnEdit.TabIndex = 5;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -119,11 +127,13 @@
             // 
             // btnCfrmEdits
             // 
-            this.btnCfrmEdits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCfrmEdits.AutoSize = true;
+            this.btnCfrmEdits.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCfrmEdits.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCfrmEdits.Enabled = false;
-            this.btnCfrmEdits.Location = new System.Drawing.Point(366, 314);
+            this.btnCfrmEdits.Location = new System.Drawing.Point(382, 3);
             this.btnCfrmEdits.Name = "btnCfrmEdits";
-            this.btnCfrmEdits.Size = new System.Drawing.Size(102, 23);
+            this.btnCfrmEdits.Size = new System.Drawing.Size(88, 23);
             this.btnCfrmEdits.TabIndex = 5;
             this.btnCfrmEdits.Text = "Confirm Edits";
             this.btnCfrmEdits.UseVisualStyleBackColor = true;
@@ -131,11 +141,13 @@
             // 
             // btnCnclEdits
             // 
-            this.btnCnclEdits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCnclEdits.AutoSize = true;
+            this.btnCnclEdits.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCnclEdits.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCnclEdits.Enabled = false;
-            this.btnCnclEdits.Location = new System.Drawing.Point(258, 314);
+            this.btnCnclEdits.Location = new System.Drawing.Point(290, 3);
             this.btnCnclEdits.Name = "btnCnclEdits";
-            this.btnCnclEdits.Size = new System.Drawing.Size(102, 23);
+            this.btnCnclEdits.Size = new System.Drawing.Size(86, 23);
             this.btnCnclEdits.TabIndex = 5;
             this.btnCnclEdits.Text = "Cancel Edits";
             this.btnCnclEdits.UseVisualStyleBackColor = true;
@@ -236,27 +248,49 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRefresh.Location = new System.Drawing.Point(15, 314);
+            this.btnRefresh.AutoSize = true;
+            this.btnRefresh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnRefresh.Location = new System.Drawing.Point(14, 3);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(86, 23);
             this.btnRefresh.TabIndex = 10;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.btnRefresh, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnDel, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnEdit, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCfrmEdits, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCnclEdits, 3, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 311);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(11, 0, 11, 0);
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(484, 30);
+            this.tableLayoutPanel1.TabIndex = 11;
+            // 
             // RemindersMain
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(484, 341);
-            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.lblWarnDesc);
             this.Controls.Add(this.dGVMain);
             this.Controls.Add(this.txtDays);
-            this.Controls.Add(this.btnCnclEdits);
-            this.Controls.Add(this.btnCfrmEdits);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.lblDays);
@@ -275,6 +309,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVMain)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,6 +333,7 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
