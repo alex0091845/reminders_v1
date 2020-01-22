@@ -39,4 +39,3 @@ C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.Properties.Re
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.csproj.GenerateResource.cache
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.exe
 C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.pdb
-C:\Me\source\repos\Reminders_V1\Reminders_V1\obj\Release\Reminders.csprojResolveAssemblyReference.cache
